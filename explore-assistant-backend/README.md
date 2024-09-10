@@ -57,7 +57,7 @@ To deploy the Cloud Function backend:
 
 ```bash
 cd terraform 
-export TF_VAR_project_id=XXX
+export TF_VAR_project_id=(PASTE BQ_PROJECT_ID HERE)
 export TF_VAR_use_bigquery_backend=0
 export TF_VAR_use_cloud_function_backend=1
 export TF_VAR_looker_auth_token=$(cat ../../.vertex_cf_auth_token)
@@ -72,7 +72,7 @@ To deploy the BigQuery backend:
 
 ```bash
 cd terraform 
-export TF_VAR_project_id=XXX
+export TF_VAR_project_id=(PASTE BQ_PROJECT_ID HERE)
 export TF_VAR_use_bigquery_backend=1
 export TF_VAR_use_cloud_function_backend=0
 terraform init
@@ -101,7 +101,7 @@ If you use the defaults, you can test whether everything is working by running:
       )
 ```
 
-Also, as part of the BigQuery backend setup, we create the Service Account that can be used to connect Looker to the BigQuery dataset to fetch the examples and use the model. You can follow the instructions for creating the connection in Looker here (https://cloud.google.com/looker/docs/db-config-google-bigquery#authentication_with_bigquery_service_accounts). You should be able to pickup the instructions on step 5. 
+Also, as part of the BigQuery backend setup, we create the Service Account that can be used to connect Looker to the BigQuery dataset to fetch the examples and use the model. After the terraform script runs, it creates a bigquery connection and project in BigQuery. You can follow the instructions for creating the connection in Looker here (https://cloud.google.com/looker/docs/db-config-google-bigquery#authentication_with_bigquery_service_accounts). You should be able to pickup the instructions on step 5. 
 
 ## Deployment Notes
 
