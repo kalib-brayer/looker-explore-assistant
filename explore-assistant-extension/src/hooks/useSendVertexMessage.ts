@@ -14,7 +14,7 @@ import looker_filters_interval_tf from '../documents/looker_filters_interval_tf'
 import { ModelParameters } from '../utils/VertexHelper'
 import { BigQueryHelper } from '../utils/BigQueryHelper'
 import { ExploreParams } from '../slices/assistantSlice'
-// import { ExploreFilterValidator, FieldType } from '../utils/ExploreFilterHelper'
+import { ExploreFilterValidator, FieldType } from '../utils/ExploreFilterHelper'
 
 const parseJSONResponse = (jsonString: string | null | undefined) => {
   if(!jsonString) {
@@ -350,17 +350,17 @@ ${
 
         console.log(field)
 
-        // const isValid = ExploreFilterValidator.isFilterValid(
-        //   field.type as FieldType,
-        //   filter.filter_expression,
-        // )
+        const isValid = ExploreFilterValidator.isFilterValid(
+          field.type as FieldType,
+          filter.filter_expression,
+        )
 
-        // if (!isValid) {
-        //   console.log(
-        //     `Invalid filter expression for field ${filter.field_id}: ${filter.filter_expression}`,
-        //   )
-        //   return
-        // }
+        if (!isValid) {
+          console.log(
+            `Invalid filter expression for field ${filter.field_id}: ${filter.filter_expression}`,
+          )
+          return
+        }
 
         // Check if the field_id already exists in the hash
         if (!filterResponseJSON[filter.field_id]) {
